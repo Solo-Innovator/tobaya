@@ -1,8 +1,9 @@
 <div class="container">
   <div class="row">
-    <h4>商品新規登録</h4>
     <div class="col">
-      <%= render 'form', item: @item %>
+      <h4 class="my-5">商品新規登録</h4>
+    
+      <%= render 'form', item: @item, genres: @genres %>
     </div>
   </div>
 </div>

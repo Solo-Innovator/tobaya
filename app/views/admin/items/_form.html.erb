@@ -3,7 +3,7 @@
     <tbody>
       <tr>
         <td>商品画像</td>
-        <td><%= f.file_field :image %></td>
+        <td><%= f.file_field :image, accept: "image/*" %></td>
       </tr>
 
       <tr>
@@ -18,7 +18,7 @@
 
       <tr>
         <td>ジャンル</td>
-        <td><%= f.select :"#", { include_blank: "--選択してください--"}, {}%></td>
+        <td><%= f.select :genre_id, genres, { include_blank: "--選択してください--" }, {} %></td>
       </tr>
 
       <tr>
@@ -39,10 +39,12 @@
     </tbody>
   </table>
 
+  <div class="text-center">
   <%#<%= if current_page?(new_admin_item_path) %>
     <%= f.submit "新規登録", class: "btn btn-success" %>
   <%#<% else %>
     <%= f.submit "変更を保存", class: "btn btn-success" %>
   <%#<% end %>
+  </div>
 
 <% end %>
