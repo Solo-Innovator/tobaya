@@ -12,6 +12,19 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
 
+scope module: :public do
+  resources :items, only: [:index, :show]
+  
+  resources :genres do
+    member do
+      get "search"
+    end
+  end
+end
+
+
+
+#管理者側のルーティング設定
 namespace :admin do
   resources :items,  only: [:new, :create, :index, :show, :edit, :update]
   resources :genres, only: [:index, :create, :edit, :update]
