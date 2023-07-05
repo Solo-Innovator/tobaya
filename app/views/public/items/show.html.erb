@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <%= render "sidebar", genres: @genres %>
+
+    <div class="col-md-4">
+      <%= image_tag @item.image, size: "300x200" %>
+    </div>
+    <div class="col-md-5">
+      <h4><b><%= @item.name %></b></h4>
+      <p><%= @item.introduction %></p>
+      <h4><b>¥ <%= @item.with_tax_price %></b>(税込)</b></h4>
+
+      <%#<% if current_customer %>
+        <%= form_with model: @cart, method: :post do |f| %>
+          <%= f.select :count, *[1..10], prompt: "個数選択" %>
+          <%= f.hidden_field :item_id, :valune => @item_id %>
+          <%# <%= f.hidden_field :customer_id, :value => current_customer.id %>
+          <%= f.submit "カートに入れる", class: "btn btn-success" %>
+        <% end %>
+     <%# <% end %>
+
+    </div>
+  </div>
+</div>

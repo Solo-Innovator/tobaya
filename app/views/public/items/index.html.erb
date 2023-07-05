@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <%= render "sidebar", genres: @genres %>
+    <div class="col-md-10">
+      <h4><b>商品一覧</b>(全<%= @items.count %>件)</h4>
+      <% @items.each do |item| %>
+      <div class="d-inline-flex">
+        <div class="">
+          <%= link_to item_path(item) do %>
+            <%= image_tag item.image, size: "190x150" %><br>
+          <% end %>
+          <%= item.name %><br>
+          ¥<%= item.with_tax_price %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
