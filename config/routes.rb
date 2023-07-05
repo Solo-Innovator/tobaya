@@ -14,7 +14,13 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
 scope module: :public do
   resources :items, only: [:index, :show]
-  
+
+  get "customers/mypage" => "customers#show"
+  get "customers/information/edit" => "customers#edit"
+  patch "customers/information" => "customers#update"
+  get "customers/confirm_withdraw" => "customers#confirm"
+  patch "customers/withdraw" => "customers#withdraw"
+
   resources :genres do
     member do
       get "search"
