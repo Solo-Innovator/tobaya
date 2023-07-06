@@ -12,7 +12,7 @@ class Customer < ApplicationRecord
     last_name_kana + '' + first_name_kana
   end
   
-  def cus_status
+  def customer_status
     if is_withdrawal == true
       "退会"
     else
