@@ -14,6 +14,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
 scope module: :public do
   resources :items, only: [:index, :show]
+  resources :addresses, only: [:index, :edit, :create, :update, :destroy]
 
   get "customers/mypage" => "customers#show"
   get "customers/information/edit" => "customers#edit"
