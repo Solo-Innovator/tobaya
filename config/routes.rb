@@ -12,22 +12,29 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
 
-scope module: :public do
-  resources :items, only: [:index, :show]
-  resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+  scope module: :public do
+    resources :items, only: [:index, :show]
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+  
+    get "customers/mypage" => "customers#show"
+    get "customers/information/edit" => "customers#edit"
+    patch "customers/information" => "customers#update"
+    get "customers/confirm_withdraw" => "customers#confirm"
+    patch "customers/withdraw" => "customers#withdraw"
 
-  get "customers/mypage" => "customers#show"
-  get "customers/information/edit" => "customers#edit"
-  patch "customers/information" => "customers#update"
-  get "customers/confirm_withdraw" => "customers#confirm"
-  patch "customers/withdraw" => "customers#withdraw"
-
-  resources :genres do
-    member do
-      get "search"
+    resources :genres do
+      member do
+        get "search"
+      end
+    end
+    
+    resources :carts, only: [:create, :index, :update, :destroy] do
+      collection do
+        delete "destroy_all"
+      end
     end
   end
-end
+    
 
 
 
