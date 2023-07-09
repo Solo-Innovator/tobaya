@@ -5,6 +5,8 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
          
   has_many :addresses
+  has_many :carts
+  has_many :orders
          
   def full_name
     last_name + '' + first_name

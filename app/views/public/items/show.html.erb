@@ -10,14 +10,14 @@
       <p><%= @item.introduction %></p>
       <h4><b>¥ <%= @item.with_tax_price %></b>(税込)</b></h4>
 
-      <%#<% if current_customer %>
+      <% if current_customer %>
         <%= form_with model: @cart, method: :post do |f| %>
-          <%= f.select :count, *[1..10], prompt: "個数選択" %>
-          <%= f.hidden_field :item_id, :valune => @item_id %>
-          <%# <%= f.hidden_field :customer_id, :value => current_customer.id %>
+          <%= f.select :quantity, 1..10, prompt: "個数選択" %>
+          <%= f.hidden_field :item_id, :value => @item.id %>
+          <%= f.hidden_field :customer_id, :value => current_customer.id %>
           <%= f.submit "カートに入れる", class: "btn btn-success" %>
         <% end %>
-     <%# <% end %>
+     <% end %>
 
     </div>
   </div>
