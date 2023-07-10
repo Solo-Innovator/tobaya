@@ -11,7 +11,7 @@
       <h4><b>¥ <%= @item.with_tax_price %></b>(税込)</b></h4>
 
       <% if current_customer %>
-        <%= form_with model: @cart, method: :post do |f| %>
+        <%= form_with model: @cart_item, method: :post do |f| %>
           <%= f.select :quantity, 1..10, prompt: "個数選択" %>
           <%= f.hidden_field :item_id, :value => @item.id %>
           <%= f.hidden_field :customer_id, :value => current_customer.id %>
