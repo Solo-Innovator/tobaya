@@ -13,9 +13,11 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 }
 
   scope module: :public do
+    root to: "homes#top"
+    get "/about" => "homes#about", as: "about"
     resources :items, only: [:index, :show]
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
-  
+
     get "customers/mypage" => "customers#show"
     get "customers/information/edit" => "customers#edit"
     patch "customers/information" => "customers#update"
@@ -27,19 +29,27 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
         get "search"
       end
     end
-    
-    resources :carts, only: [:create, :index, :update, :destroy] do
+
+    resources :cart_items, only: [:create, :index, :update, :destroy] do
       collection do
         delete "destroy_all"
       end
     end
+
+    resources :orders, only: [:new, :create, :index, :show] do
+      collection do
+        post "confirm"
+        get "complete"
+      end
+    end
   end
-    
+
 
 
 
 #管理者側のルーティング設定
 namespace :admin do
+  get "/" => "homes#top"
   resources :items,     only: [:new, :create, :index, :show, :edit, :update]
   resources :genres,    only: [:index, :create, :edit, :update]
   resources :customers, only: [:index, :show, :edit, :update]
